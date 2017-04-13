@@ -1,0 +1,25 @@
+{
+    "name": "thetribe/json",
+    "description": "json_encode/json_decode wrapper",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérôme Vasseur",
+            "email": "jerome.vasseur@thetribe.io"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/decode.php",
+            "src/encode.php"
+        ],
+        "psr-4": {
+            "TheTribe\\JSON\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^5.5|^7.0",
+        "ext-json": "*"
+    }
+}
