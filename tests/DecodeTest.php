@@ -12,7 +12,7 @@ class DecodeTest extends TestCase
      */
     public function testSuccessfulDecode($json, $value)
     {
-        $this->assertSame($value, JSON\decode($json));
+        $this->assertEquals($value, JSON\decode($json));
     }
 
     public function getSuccessfulDecodeData()
@@ -20,6 +20,7 @@ class DecodeTest extends TestCase
         yield ['null', null];
         yield ['""', ''];
         yield ['[0,1,2]', [0, 1, 2]];
+        yield ['{"foo": "bar"}', (object) ['foo' => 'bar']];
     }
 
     /**
@@ -34,5 +35,19 @@ class DecodeTest extends TestCase
     public function getErrorDecodeData()
     {
         yield ['{'];
+    }
+
+    /**
+     * @dataProvider getDecodeAsArrayData
+     */
+    public function testDecodeAsArray($json, $value)
+    {
+        $this->assertEquals($value, JSON\decode($json, \JSON_OBJECT_AS_ARRAY));
+    }
+
+    public function getDecodeAsArrayData()
+    {
+        yield ['null', null];
+        yield ['{"foo": "bar"}', ['foo' => 'bar']];
     }
 }

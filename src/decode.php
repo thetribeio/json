@@ -13,7 +13,7 @@ namespace TheTribe\JSON;
  */
 function decode($json, $options = 0, $depth = 512)
 {
-    $value = \json_decode($json, false, $depth, $options);
+    $value = \json_decode($json, \JSON_OBJECT_AS_ARRAY & $options, $depth, $options);
 
     if (\JSON_ERROR_NONE !== $error = \json_last_error()) {
         throw new DecodeException(\json_last_error_msg(), $error);
